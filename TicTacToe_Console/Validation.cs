@@ -17,7 +17,7 @@ namespace TicTacToe_Console
                 try
                 {
                     int number = int.Parse(Console.ReadLine());
-                    if (number < min || number >= max) throw new OverflowException("Your number is to big or to small");
+                    if (number < min || number >= max) throw new Exception("Your number is to big or to small");
                     return number;
                 }
                 catch (ArgumentNullException)
@@ -43,8 +43,8 @@ namespace TicTacToe_Console
                 try
                 {
                     string output = Console.ReadLine();
-                    if (output == null) throw new ArgumentNullException("String is empty");
-                    if (output.Length > maxLength) throw new Exception($"Max length of text should be {maxLength} characters");
+                    if (output == null || output == "" || output[0] == ' ') throw new Exception("String is empty");
+                    if (output.Length > maxLength) throw new Exception($"Text should not be longer than {maxLength} characters");
 
                     return output;
                 }
@@ -57,6 +57,10 @@ namespace TicTacToe_Console
                     Console.WriteLine(e.Message);
                 }
                 catch (ArgumentOutOfRangeException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
                 }
