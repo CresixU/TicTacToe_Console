@@ -55,7 +55,12 @@ namespace TicTacToe_Console
         {
             Console.Clear();
             statistics.ShowStats();
-            
+        }
+
+        public void TopStats()
+        {
+            Console.Clear();
+            statistics.ShowTopPlayers();
         }
 
         public void Exit()

@@ -33,6 +33,19 @@ namespace TicTacToe_Console
             {
                 Console.WriteLine($"{item.Name,10} {item.TotalGames,10} {item.WinGames,5} {item.LoseGames,5} {item.WinRatio,5}%");
             }
+
+            Console.ReadKey(true);
+        }
+
+        public void ShowTopPlayers()
+        {
+            var topPlayers = players.OrderByDescending(p => p.WinRatio).ToList();
+            Console.WriteLine($"TOP 10 Players by WinRatio\n{"Name",10} {"Total",10} {"Wins",5} {"Loses",5} Win/Total(%)");
+            foreach (var item in topPlayers)
+            {
+                Console.WriteLine($"{item.Name,10} {item.TotalGames,10} {item.WinGames,5} {item.LoseGames,5} {item.WinRatio,5}%");
+            }
+
         }
     }
 }

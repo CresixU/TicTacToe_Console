@@ -15,7 +15,7 @@ namespace TicTacToe_Console
             menu.statistics.players = FileManager.LoadData();
             while(true)
             {
-                Console.WriteLine("Tic Tac Toe Game\n\n1 - New Game\n2 - Statistics\n3 - Exit Game");
+                Console.WriteLine("Tic Tac Toe Game\n\n1 - New Game\n2 - Statistics\n3 - Top Players\n7 - Exit Game");
                 switch (Console.ReadKey().KeyChar)
                 {
                     case '1':
@@ -25,6 +25,9 @@ namespace TicTacToe_Console
                         menu.Stats();
                         break;
                     case '3':
+                        menu.TopStats();
+                        break;
+                    case '7':
                         FileManager.SaveData(menu.statistics.players);
                         menu.Exit();
                         break;
