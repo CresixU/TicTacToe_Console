@@ -28,10 +28,10 @@ namespace TicTacToe_Console
                 return;
             }
 
-            Console.WriteLine($"Players List\n{"Name",10} {"Total Games",10} {"Wins",5} {"Loses",5} Win/Total(%)");
+            Console.WriteLine($"Players List\n{"Name",10} {"Total",10} {"Wins",5} {"Loses",5} Win/Total(%)");
             foreach (var item in players)
             {
-                Console.WriteLine($"{item.Name,10} {item.TotalGames,10} {item.WinGames,5} {item.LoseGames,5} {item.WinRatio,5}");
+                Console.WriteLine($"{item.Name,10} {item.TotalGames,10} {item.WinGames,5} {item.LoseGames,5} {item.WinRatio,5}%");
             }
         }
     }
