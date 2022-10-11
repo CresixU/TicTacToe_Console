@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TicTacToe_Console
 {
-    internal class Statistics
+    public class Statistics
     {
         public List<Player> players = new List<Player>();
 

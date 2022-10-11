@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TicTacToe_Console
 {
-    internal class Player
+    public class Player
     {
         public string Name { get; set; }
         public int TotalGames { get; set; }

@@ -9,7 +9,7 @@ namespace TicTacToe_Console
     internal class Menu
     {
 
-        private readonly Statistics statistics;
+        public readonly Statistics statistics;
         private readonly Grid grid;
         private readonly Rules rules;
         public Menu()
