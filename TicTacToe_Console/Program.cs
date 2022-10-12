@@ -10,9 +10,11 @@ namespace TicTacToe_Console
     {
         static void Main(string[] args)
         {
-            Menu menu = new Menu();
             var statistics = new Statistics();
-            menu.statistics.players = FileManager.LoadData();
+            var menu = new Menu(statistics);
+            
+            statistics.players = FileManager.LoadData();
+
             while(true)
             {
                 Console.WriteLine("Tic Tac Toe Game\n\n1 - New Game\n2 - Statistics\n3 - Top Players\n7 - Exit Game");
@@ -28,7 +30,7 @@ namespace TicTacToe_Console
                         menu.TopStats();
                         break;
                     case '7':
-                        FileManager.SaveData(menu.statistics.players);
+                        FileManager.SaveData(statistics.players);
                         menu.Exit();
                         break;
                     default:

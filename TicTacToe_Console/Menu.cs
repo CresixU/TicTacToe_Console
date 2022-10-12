@@ -12,9 +12,9 @@ namespace TicTacToe_Console
         public readonly Statistics statistics;
         private readonly Grid grid;
         private readonly Rules rules;
-        public Menu()
+        public Menu(Statistics stats)
         {
-            statistics = new Statistics();
+            statistics = stats;
             grid = new Grid();
             rules = new Rules(grid);
         }
