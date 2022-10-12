@@ -10,6 +10,7 @@ namespace TicTacToe_Console
     public class Statistics
     {
         public List<Player> players = new List<Player>();
+        public List<Duel> duels = new List<Duel>(); 
 
         public void CreateNewPlayer(string name)
         {
@@ -17,6 +18,13 @@ namespace TicTacToe_Console
             
             players.Add(new Player(name));
 
+        }
+
+        public void AddDuelResults(Player p1, Player p2, Player winner, bool isDraw = false)
+        {
+            if (p1 is null || p2 is null) throw new Exception("Duel failed");
+            if(winner is null) isDraw = true;
+            duels.Add(new Duel(p1, p2, winner, isDraw));
         }
 
         public bool IsPlayerExists(string name) => players.Any(p => p.Name == name);
@@ -81,6 +89,33 @@ namespace TicTacToe_Console
                         
                 }
             }
+        }
+
+        public void ShowDuelStats(Player p1, Player p2)
+        {
+            var togetherGames = 
+                duels.Where(d => 
+                ((d.PlayerOne.Name == p1.Name) && (d.PlayerTwo.Name == p2.Name)) || 
+                ((d.PlayerTwo.Name == p1.Name) && (d.PlayerOne.Name == p2.Name)))
+                .ToList();
+
+            var numberOfGames = togetherGames.Count;
+            var numberOfGamesPlayerOneWin = togetherGames.Where(d => d.Winner.Name == p1.Name).ToList().Count; //NullReferenceExcepction while Draw, the rest works fine - Duel.Winner.get zwrócił null
+            var numberOfGamesPlayerTwoWin = togetherGames.Where(d => d.Winner.Name == p2.Name).ToList().Count;
+            var numberOfGamesDraw = togetherGames.Where(d => d.IsDraw==true).ToList().Count;
+
+            const int FirstColWidth = 20;
+            const int SecondColWidth = 15;
+            
+
+
+            Console.WriteLine($"Statistics for: {p1.Name} vs {p2.Name}");
+            Console.WriteLine($"{"",FirstColWidth} {p1.Name,SecondColWidth} {p2.Name,SecondColWidth}");
+            Console.WriteLine($"{"Total together games: ",FirstColWidth} {numberOfGames,SecondColWidth} {numberOfGames,SecondColWidth}");
+            Console.WriteLine($"{"Wins",FirstColWidth} {numberOfGamesPlayerOneWin,SecondColWidth} {numberOfGamesPlayerTwoWin,SecondColWidth}");
+            //Console.WriteLine($"{"Loses",FirstColWidth} {p1.Name,SecondColWidth,SecondColWidth} {p2.Name,SecondColWidth,SecondColWidth}");
+            Console.WriteLine($"{"Draws",FirstColWidth} {numberOfGamesDraw,SecondColWidth} {numberOfGamesDraw,SecondColWidth}");
+            //Console.WriteLine($"{"% of win games",FirstColWidth} {numberOfGamesPlayerOneWin,SecondColWidth} {numberOfGamesPlayerTwoWin,SecondColWidth}");
         }
     }
 }

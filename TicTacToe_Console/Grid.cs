@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TicTacToe_Console
 {
-    internal class Grid
+    public class Grid
     {
         public readonly int GRID_SIZE = 3;
         public readonly int CROSS = 1;

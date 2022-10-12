@@ -12,20 +12,23 @@ namespace TicTacToe_Console
         private readonly Statistics _statistics;
         private readonly Grid _grid;
         private readonly Rules _rules;
+
+        Player player1;
+        Player player2;
         public Menu(Statistics stats)
         {
             _statistics = stats;
             _grid = new Grid();
-            _rules = new Rules(_grid);
+            _rules = new Rules(_grid, _statistics);
         }
 
 
         public void NewGame()
         {
             Console.Clear();
-            var player1 = AssignPlayer();
+            player1 = AssignPlayer();
 
-            var player2 = AssignPlayer();
+            player2 = AssignPlayer();
 
             _grid.Create();
 
@@ -49,7 +52,8 @@ namespace TicTacToe_Console
         public void TopStats()
         {
             Console.Clear();
-            _statistics.ShowTopPlayers();
+            //_statistics.ShowTopPlayers();
+            _statistics.ShowDuelStats(player1, player2);
         }
 
         public void Exit()
