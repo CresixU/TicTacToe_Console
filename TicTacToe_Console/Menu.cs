@@ -43,7 +43,7 @@ namespace TicTacToe_Console
         public void Stats()
         {
             Console.Clear();
-            _statistics.ShowStats();
+            _statistics.ShowPaginatedStats();
         }
 
         public void TopStats()

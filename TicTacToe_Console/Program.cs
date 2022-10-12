@@ -12,10 +12,8 @@ namespace TicTacToe_Console
         {
             var statistics = new Statistics();
             var menu = new Menu(statistics);
-            
             statistics.players = FileManager.LoadData("players.json");
-
-            while(true)
+            while (true)
             {
                 Console.WriteLine("Tic Tac Toe Game\n\n1 - New Game\n2 - Statistics\n3 - Top Players\n7 - Exit Game");
                 switch (Console.ReadKey().KeyChar)
