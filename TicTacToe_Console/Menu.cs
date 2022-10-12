@@ -23,20 +23,9 @@ namespace TicTacToe_Console
         public void NewGame()
         {
             Console.Clear();
-            var name = Validation.StringValidation("First Player's name: ");
-            if(!_statistics.IsPlayerExists(name))
-            {
-                _statistics.CreateNewPlayer(name);
-            }
-            var player1 = _statistics.players.FirstOrDefault(p => p.Name == name);
+            var player1 = AssignPlayer();
 
-            name = Validation.StringValidation("Second Player's name: ");
-            if (!_statistics.IsPlayerExists(name))
-            {
-                _statistics.CreateNewPlayer(name);
-            }
-            var player2 = _statistics.players.FirstOrDefault(p => p.Name == name);
-
+            var player2 = AssignPlayer();
 
             _grid.Create();
 
@@ -66,6 +55,18 @@ namespace TicTacToe_Console
         public void Exit()
         {
             Environment.Exit(0);
+        }
+
+        private Player AssignPlayer()
+        {
+            var name = Validation.StringValidation("First Player's name: ");
+            if (!_statistics.IsPlayerExists(name))
+            {
+                _statistics.CreateNewPlayer(name);
+            }
+            var player = _statistics.players.FirstOrDefault(p => p.Name == name);
+
+            return player;
         }
     }
 }
