@@ -1,6 +1,8 @@
 # TicTacToe Game in Console
 
-TicTacToe game written in C# using .NET Core 3.1 with traditional rules of the game.
+TicTacToe game with traditional rules of the game.
+
+Written in C# using .NET Core 3.1
 
 ## Features
 
