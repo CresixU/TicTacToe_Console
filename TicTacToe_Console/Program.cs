@@ -13,7 +13,7 @@ namespace TicTacToe_Console
             var statistics = new Statistics();
             var menu = new Menu(statistics);
             
-            statistics.players = FileManager.LoadData();
+            statistics.players = FileManager.LoadData("players.json");
 
             while(true)
             {
@@ -30,7 +30,7 @@ namespace TicTacToe_Console
                         menu.TopStats();
                         break;
                     case '7':
-                        FileManager.SaveData(statistics.players);
+                        FileManager.SaveData(statistics.players, "players.json");
                         menu.Exit();
                         break;
                     default:

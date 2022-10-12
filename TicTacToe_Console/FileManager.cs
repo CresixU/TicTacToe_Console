@@ -9,13 +9,12 @@ namespace TicTacToe_Console
 {
     public static class FileManager
     {
-        private static string _path = @"data.json";
 
-        public static void SaveData(List<Player> list)
+        public static void SaveData(List<Player> list, string path)
         {
-            CreateFileIfNotExist(_path);
+            CreateFileIfNotExist(path);
             
-            if(!_path.EndsWith(".json"))
+            if(!path.EndsWith(".json"))
             {
                 Console.WriteLine("File should be json type");
                 return;
@@ -23,17 +22,17 @@ namespace TicTacToe_Console
 
             string serialize = JsonConvert.SerializeObject(list);
 
-            File.WriteAllText(_path, serialize);
+            File.WriteAllText(path, serialize);
         }
 
-        public static List<Player> LoadData()
+        public static List<Player> LoadData(string path)
         {
             List<Player> list = new List<Player>();
-            if (!File.Exists(_path)) return list;
-            if (IsFileEmpty(_path)) return list;
-            if (!_path.EndsWith(".json")) return list;
+            if (!File.Exists(path)) return list;
+            if (IsFileEmpty(path)) return list;
+            if (!path.EndsWith(".json")) return list;
 
-            list = JsonConvert.DeserializeObject<List<Player>>(File.ReadAllText(_path));
+            list = JsonConvert.DeserializeObject<List<Player>>(File.ReadAllText(path));
             Console.WriteLine("Data loaded");
 
             return list;
