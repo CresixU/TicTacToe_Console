@@ -9,14 +9,14 @@ namespace TicTacToe_Console
     internal class Menu
     {
 
-        public readonly Statistics statistics;
-        private readonly Grid grid;
-        private readonly Rules rules;
+        private readonly Statistics _statistics;
+        private readonly Grid _grid;
+        private readonly Rules _rules;
         public Menu(Statistics stats)
         {
-            statistics = stats;
-            grid = new Grid();
-            rules = new Rules(grid);
+            _statistics = stats;
+            _grid = new Grid();
+            _rules = new Rules(_grid);
         }
 
 
@@ -24,43 +24,43 @@ namespace TicTacToe_Console
         {
             Console.Clear();
             var name = Validation.StringValidation("First Player's name: ");
-            if(!statistics.IsPlayerExists(name))
+            if(!_statistics.IsPlayerExists(name))
             {
-                statistics.CreateNewPlayer(name);
+                _statistics.CreateNewPlayer(name);
             }
-                var player1 = statistics.players.FirstOrDefault(p => p.Name == name);
+            var player1 = _statistics.players.FirstOrDefault(p => p.Name == name);
 
             name = Validation.StringValidation("Second Player's name: ");
-            if (!statistics.IsPlayerExists(name))
+            if (!_statistics.IsPlayerExists(name))
             {
-                statistics.CreateNewPlayer(name);
+                _statistics.CreateNewPlayer(name);
             }
-                var player2 = statistics.players.FirstOrDefault(p => p.Name == name);
+            var player2 = _statistics.players.FirstOrDefault(p => p.Name == name);
 
 
-            grid.Create();
+            _grid.Create();
 
             while(true)
             {
-                grid.Display();
-                grid.Insert(grid.CROSS);
-                if (rules.CheckGameStatus(player1,player2)) break;
-                grid.Display();
-                grid.Insert(grid.CIRCLE);
-                if (rules.CheckGameStatus(player1,player2)) break;
+                _grid.Display();
+                _grid.Insert(_grid.CROSS);
+                if (_rules.CheckGameStatus(player1,player2)) break;
+                _grid.Display();
+                _grid.Insert(_grid.CIRCLE);
+                if (_rules.CheckGameStatus(player1,player2)) break;
             }
         }
 
         public void Stats()
         {
             Console.Clear();
-            statistics.ShowStats();
+            _statistics.ShowStats();
         }
 
         public void TopStats()
         {
             Console.Clear();
-            statistics.ShowTopPlayers();
+            _statistics.ShowTopPlayers();
         }
 
         public void Exit()
