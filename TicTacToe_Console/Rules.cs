@@ -19,14 +19,14 @@ namespace TicTacToe_Console
         {
             if (CheckWinner(_grid.CROSS))
             {
-                Console.WriteLine($"Player X won");
+                Console.WriteLine($"Player X has won");
                 player1.Win();
                 player2.Lose();
                 return true;
             }
             if (CheckWinner(_grid.CIRCLE))
             {
-                Console.WriteLine($"Player O won");
+                Console.WriteLine($"Player O has won");
                 player1.Lose();
                 player2.Win();
                 return true;
@@ -44,7 +44,7 @@ namespace TicTacToe_Console
         private bool CheckWinner(int player)
         {
             int sum = 0;
-            //Poziomo
+            //Horizontal checking
             for (int i = 0; i < _grid.GRID_SIZE; i++)
             {
                 for (int j = 0; j < _grid.GRID_SIZE; j++)
@@ -55,7 +55,7 @@ namespace TicTacToe_Console
                 }
                 sum = 0;
             }
-            //Pionowo
+            //Vertical checking
             for (int j = 0; j < _grid.GRID_SIZE; j++)
             {
                 for (int i = 0; i < _grid.GRID_SIZE; i++)
@@ -66,7 +66,7 @@ namespace TicTacToe_Console
                 }
                 sum = 0;
             }
-            //Na skos
+            //Diagonally \
             for (int j = 0; j < _grid.GRID_SIZE; j++)
             {
                 sum += _grid.table[j, j];
@@ -74,7 +74,7 @@ namespace TicTacToe_Console
                     return true;
             }
             sum = 0;
-            //Na skos 2
+            //Diagonally /
             int a = 0;
             for (int i = _grid.GRID_SIZE - 1; i >= 0; i--)
             {
