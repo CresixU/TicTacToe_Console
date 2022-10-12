@@ -39,6 +39,12 @@ namespace TicTacToe_Console
 
         public void ShowTopPlayers()
         {
+            if (!players.Any<Player>())
+            {
+                Console.WriteLine("There are no statistics yet");
+                return;
+            }
+
             var topPlayers = players.OrderByDescending(p => p.WinRatio).ToList();
             Console.WriteLine($"TOP 10 Players by WinRatio\n{"Name",10} {"Total",10} {"Wins",5} {"Loses",5} Win/Total(%)");
             foreach (var item in topPlayers)
