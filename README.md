@@ -11,3 +11,7 @@ TicTacToe game written in C# using .NET Core 3.1 with traditional rules of the g
 ## Libraries
 - Newtonsoft.Json
 
+## TODO
+- Duel statistics
+- Player vs Simple AI
+
