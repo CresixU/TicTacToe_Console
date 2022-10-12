@@ -100,7 +100,7 @@ namespace TicTacToe_Console
                 .ToList();
 
             var numberOfGames = togetherGames.Count;
-            var numberOfGamesPlayerOneWin = togetherGames.Where(d => d.Winner.Name == p1.Name).ToList().Count; //NullReferenceExcepction while Draw, the rest works fine - Duel.Winner.get zwrócił null
+            var numberOfGamesPlayerOneWin = togetherGames.Where(d => d.Winner.Name == p1.Name).ToList().Count; //NullReferenceExcepction while Game Draw, the rest works fine - Duel.Winner.get zwrócił null
             var numberOfGamesPlayerTwoWin = togetherGames.Where(d => d.Winner.Name == p2.Name).ToList().Count;
             var numberOfGamesDraw = togetherGames.Where(d => d.IsDraw==true).ToList().Count;
 
