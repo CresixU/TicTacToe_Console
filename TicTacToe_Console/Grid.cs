@@ -53,9 +53,9 @@ namespace TicTacToe_Console
             {
                 int x = Validation.IntValidation("Axis X: ");
                 int y = Validation.IntValidation("Axis Y: ");
-                if (table[x, y] == 0)
+                if (table[y, x] == 0)
                 {
-                    table[x, y] = player;
+                    table[y, x] = player;
                     break;
                 }
                 else Console.WriteLine("You cant do this");
