@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace TicTacToe_Console
 {
-    public class Rules
+    public class GameManager
     {
-        public Rules(Grid grid, Statistics statistics)
+        public GameManager(Grid grid, Statistics statistics)
         {
             _grid = grid;
             _statistics = statistics;
@@ -16,6 +16,19 @@ namespace TicTacToe_Console
 
         private readonly Grid _grid;
         private readonly Statistics _statistics;
+
+        public void Start(Player player1, Player player2)
+        {
+            while (true)
+            {
+                _grid.Display();
+                _grid.Insert(_grid.CROSS);
+                if (CheckGameStatus(player1, player2)) break;
+                _grid.Display();
+                _grid.Insert(_grid.CIRCLE);
+                if (CheckGameStatus(player1, player2)) break;
+            }
+        }
 
         public bool CheckGameStatus(Player player1, Player player2)
         {

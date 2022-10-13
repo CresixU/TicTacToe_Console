@@ -11,15 +11,16 @@ namespace TicTacToe_Console
 
         private readonly Statistics _statistics;
         private readonly Grid _grid;
-        private readonly Rules _rules;
+        private readonly GameManager _gameManager;
 
-        Player player1;
-        Player player2;
+        private Player _player1;
+        private Player _player2;
+
         public Menu(Statistics stats)
         {
             _statistics = stats;
             _grid = new Grid();
-            _rules = new Rules(_grid, _statistics);
+            _gameManager = new GameManager(_grid, _statistics);
         }
 
 
@@ -27,20 +28,13 @@ namespace TicTacToe_Console
         {
             Console.Clear();
 
-            player1 = AssignPlayer();
-            player2 = AssignPlayer();
+            _player1 = AssignPlayer();
+            _player2 = AssignPlayer();
 
             _grid.Create();
 
-            while(true)
-            {
-                _grid.Display();
-                _grid.Insert(_grid.CROSS);
-                if (_rules.CheckGameStatus(player1,player2)) break;
-                _grid.Display();
-                _grid.Insert(_grid.CIRCLE);
-                if (_rules.CheckGameStatus(player1,player2)) break;
-            }
+            _gameManager.Start(_player1,_player2);
+
         }
 
         public void Stats()
@@ -59,10 +53,10 @@ namespace TicTacToe_Console
         {
             Console.Clear();
 
-            player1 = AssignPlayer();
-            player2 = AssignPlayer();
+            _player1 = AssignPlayer();
+            _player2 = AssignPlayer();
 
-            _statistics.ShowDuelStats(player1, player2);
+            _statistics.ShowDuelStats(_player1, _player2);
         }
 
         public void Exit()
