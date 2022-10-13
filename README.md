@@ -8,7 +8,7 @@ Written in C# using .NET Core 3.1
 - Readable Menu
 - Players statistics (paginated or TOP 10 players)
 - Saving statistics to file
-- Duel statistics
+- Duel statistics (comparing statistics with each other)
 
 ## Libraries
 - Newtonsoft.Json
