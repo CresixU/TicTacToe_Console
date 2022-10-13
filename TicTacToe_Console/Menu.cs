@@ -26,8 +26,8 @@ namespace TicTacToe_Console
         public void NewGame()
         {
             Console.Clear();
-            player1 = AssignPlayer();
 
+            player1 = AssignPlayer();
             player2 = AssignPlayer();
 
             _grid.Create();
@@ -58,6 +58,10 @@ namespace TicTacToe_Console
         public void DuelStats()
         {
             Console.Clear();
+
+            player1 = AssignPlayer();
+            player2 = AssignPlayer();
+
             _statistics.ShowDuelStats(player1, player2);
         }
 

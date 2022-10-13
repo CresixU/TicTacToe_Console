@@ -16,7 +16,7 @@ namespace TicTacToe_Console
             statistics.duels = FileManager<Duel>.LoadData("duels.json");
             while (true)
             {
-                Console.WriteLine("Tic Tac Toe Game\n\n1 - New Game\n2 - Statistics\n3 - Top Players\n7 - Exit Game");
+                Console.WriteLine("Tic Tac Toe Game\n\n1 - New Game\n2 - Statistics\n3 - Top Players\n4 - Duel Statistics\n7 - Exit Game");
                 switch (Console.ReadKey().KeyChar)
                 {
                     case '1':
@@ -27,6 +27,9 @@ namespace TicTacToe_Console
                         break;
                     case '3':
                         menu.TopStats();
+                        break;
+                    case '4':
+                        menu.DuelStats();
                         break;
                     case '7':
                         FileManager<Player>.SaveData(statistics.players, "players.json");

@@ -16,7 +16,7 @@ namespace TicTacToe_Console
             PlayerOne = playerOne;
             PlayerTwo = playerTwo;
             Winner = winner;
-            IsDraw = isDraw;    
+            IsDraw = isDraw;
         }
     }
 }
