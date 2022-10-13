@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TicTacToe_Console
 {
-    internal class Grid
+    public class Grid
     {
         public readonly int GRID_SIZE = 3;
         public readonly int CROSS = 1;
@@ -53,9 +53,9 @@ namespace TicTacToe_Console
             {
                 int x = Validation.IntValidation("Axis X: ");
                 int y = Validation.IntValidation("Axis Y: ");
-                if (table[x, y] == 0)
+                if (table[y, x] == 0)
                 {
-                    table[x, y] = player;
+                    table[y, x] = player;
                     break;
                 }
                 else Console.WriteLine("You cant do this");

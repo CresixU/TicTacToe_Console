@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 
 namespace TicTacToe_Console
 {
-    internal class Rules
+    public class Rules
     {
-        public Rules(Grid grid)
+        public Rules(Grid grid, Statistics statistics)
         {
             _grid = grid;
+            _statistics = statistics;
         }
 
         private readonly Grid _grid;
+        private readonly Statistics _statistics;
 
         public bool CheckGameStatus(Player player1, Player player2)
         {
@@ -22,6 +24,7 @@ namespace TicTacToe_Console
                 Console.WriteLine($"Player X has won");
                 player1.Win();
                 player2.Lose();
+                _statistics.AddDuelResults(player1, player2, player1);
                 return true;
             }
             if (CheckWinner(_grid.CIRCLE))
@@ -29,6 +32,7 @@ namespace TicTacToe_Console
                 Console.WriteLine($"Player O has won");
                 player1.Lose();
                 player2.Win();
+                _statistics.AddDuelResults(player1, player2, player2);
                 return true;
             }
             if (CheckDraw())
@@ -36,6 +40,7 @@ namespace TicTacToe_Console
                 Console.WriteLine($"Draw");
                 player1.Draw();
                 player2.Draw();
+                _statistics.AddDuelResults(player1, player2, null, true);
                 return true;
             }
             return false;
