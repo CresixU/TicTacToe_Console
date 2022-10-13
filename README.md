@@ -14,5 +14,6 @@ Written in C# using .NET Core 3.1
 - Newtonsoft.Json
 
 ## TODO
+- Implement Dependecy Injection
 - Player vs Simple AI
 
