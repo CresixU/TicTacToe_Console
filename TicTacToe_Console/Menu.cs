@@ -52,7 +52,12 @@ namespace TicTacToe_Console
         public void TopStats()
         {
             Console.Clear();
-            //_statistics.ShowTopPlayers();
+            _statistics.ShowTopPlayers();
+        }
+
+        public void DuelStats()
+        {
+            Console.Clear();
             _statistics.ShowDuelStats(player1, player2);
         }
 

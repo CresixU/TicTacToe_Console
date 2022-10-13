@@ -93,6 +93,12 @@ namespace TicTacToe_Console
 
         public void ShowDuelStats(Player p1, Player p2)
         {
+            if(!duels.Any<Duel>())
+            {
+                Console.WriteLine("There are no statistics yet");
+                return;
+            }
+
             var togetherGames = 
                 duels.Where(d => 
                 ((d.PlayerOne.Name == p1.Name) && (d.PlayerTwo.Name == p2.Name)) || 

@@ -7,10 +7,10 @@ using Newtonsoft.Json;
 
 namespace TicTacToe_Console
 {
-    public static class FileManager
+    public static class FileManager<T>
     {
 
-        public static void SaveData(List<Player> list, string path)
+        public static void SaveData(List<T> list, string path)
         {
             CreateFileIfNotExist(path);
             
@@ -25,14 +25,14 @@ namespace TicTacToe_Console
             File.WriteAllText(path, serialize);
         }
 
-        public static List<Player> LoadData(string path)
+        public static List<T> LoadData(string path)
         {
-            List<Player> list = new List<Player>();
+            List<T> list = new List<T>();
             if (!File.Exists(path)) return list;
             if (IsFileEmpty(path)) return list;
             if (!path.EndsWith(".json")) return list;
 
-            list = JsonConvert.DeserializeObject<List<Player>>(File.ReadAllText(path));
+            list = JsonConvert.DeserializeObject<List<T>>(File.ReadAllText(path));
             Console.WriteLine("Data loaded");
 
             return list;
