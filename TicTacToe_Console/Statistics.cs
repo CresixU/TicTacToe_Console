@@ -17,13 +17,12 @@ namespace TicTacToe_Console
             if (name is null) throw new ArgumentNullException("No name.");
             
             players.Add(new Player(name));
-
         }
 
         public void AddDuelResults(Player p1, Player p2, Player winner, bool isDraw = false)
         {
             if (p1 is null || p2 is null) throw new Exception("Duel failed");
-            if(winner is null) isDraw = true;
+            if (winner is null) isDraw = true;
             duels.Add(new Duel(p1, p2, winner, isDraw));
         }
 
@@ -31,7 +30,7 @@ namespace TicTacToe_Console
 
         public void ShowTopPlayers()
         {
-            if (!players.Any<Player>())
+            if (!players.Any())
             {
                 Console.WriteLine("There are no statistics yet");
                 return;
@@ -48,7 +47,7 @@ namespace TicTacToe_Console
 
         public void ShowPaginatedStats(int page = 0)
         {
-            if (!players.Any<Player>())
+            if (!players.Any())
             {
                 Console.WriteLine("There are no statistics yet");
                 return;
@@ -93,49 +92,68 @@ namespace TicTacToe_Console
 
         public void ShowDuelStats(Player p1, Player p2)
         {
-            if(!duels.Any<Duel>())
+            if(!duels.Any())
             {
                 Console.WriteLine("There are no statistics yet");
                 return;
             }
 
-            var togetherGames = 
-                duels.Where(d => 
-                ((d.PlayerOne.Name == p1.Name) && (d.PlayerTwo.Name == p2.Name)) || 
+            try
+            {
+
+                var togetherGames =
+                duels.Where(d =>
+                ((d.PlayerOne.Name == p1.Name) && (d.PlayerTwo.Name == p2.Name)) ||
                 ((d.PlayerTwo.Name == p1.Name) && (d.PlayerOne.Name == p2.Name)))
                 .ToList();
 
-            var numberOfGames = togetherGames.Count;
+                var numberOfGames = togetherGames.Count;
 
-           var numberOfGamesPlayerOneWin = togetherGames.Where(d => d.IsDraw==false)
-                .ToList()
-                .Where(d => d.Winner.Name == p1.Name)
-                .ToList()
-                .Count;
+                var numberOfGamesPlayerOneWin = togetherGames.Where(d => d.IsDraw == false)
+                     .ToList()
+                     .Where(d => d.Winner.Name == p1.Name)
+                     .ToList()
+                     .Count;
 
-           var numberOfGamesPlayerTwoWin = togetherGames
-                .Where(d => d.IsDraw == false).ToList()
-                .Where(d => d.Winner.Name == p2.Name).ToList()
-                .Count; 
+                var numberOfGamesPlayerTwoWin = togetherGames
+                     .Where(d => d.IsDraw == false).ToList()
+                     .Where(d => d.Winner.Name == p2.Name).ToList()
+                     .Count;
 
-            var numberOfGamesDraw = togetherGames.Where(d => d.IsDraw==true).ToList().Count;
+                var numberOfGamesDraw = togetherGames.Where(d => d.IsDraw == true).ToList().Count;
 
-            const int FirstColWidth = 20;
-            const int SecondColWidth = 15;
+                const int FirstColWidth = 20;
+                const int SecondColWidth = 15;
 
-            int numberOfGamesPlayerOneLose = numberOfGames - numberOfGamesDraw - numberOfGamesPlayerOneWin;
-            int numberOfGamesPlayerTwoLose = numberOfGames - numberOfGamesDraw - numberOfGamesPlayerTwoWin;
+                int numberOfGamesPlayerOneLose = numberOfGames - numberOfGamesDraw - numberOfGamesPlayerOneWin;
+                int numberOfGamesPlayerTwoLose = numberOfGames - numberOfGamesDraw - numberOfGamesPlayerTwoWin;
 
-            var playerOneWinRatio = numberOfGamesPlayerOneWin / numberOfGames * 100;
-            var playerTwoWinRatio = numberOfGamesPlayerTwoWin / numberOfGames * 100;
+                var playerOneWinRatio = numberOfGamesPlayerOneWin / numberOfGames * 100;
+                var playerTwoWinRatio = numberOfGamesPlayerTwoWin / numberOfGames * 100;
 
-            Console.WriteLine($"Statistics for: {p1.Name} vs {p2.Name}");
-            Console.WriteLine($"{"",FirstColWidth} {p1.Name,SecondColWidth} {p2.Name,SecondColWidth}");
-            Console.WriteLine($"{"Total together games: ",FirstColWidth} {numberOfGames,SecondColWidth} {numberOfGames,SecondColWidth}");
-            Console.WriteLine($"{"Wins",FirstColWidth} {numberOfGamesPlayerOneWin,SecondColWidth} {numberOfGamesPlayerTwoWin,SecondColWidth}");
-            Console.WriteLine($"{"Loses",FirstColWidth} {numberOfGamesPlayerOneLose,SecondColWidth} {numberOfGamesPlayerTwoLose,SecondColWidth}");
-            Console.WriteLine($"{"Draws",FirstColWidth} {numberOfGamesDraw,SecondColWidth} {numberOfGamesDraw,SecondColWidth}");
-            Console.WriteLine($"{"% of win games",FirstColWidth} {playerOneWinRatio+"%",SecondColWidth} {playerTwoWinRatio+"%",SecondColWidth}");
+                Console.WriteLine($"Statistics for: {p1.Name} vs {p2.Name}");
+                Console.WriteLine($"{"",FirstColWidth} {p1.Name,SecondColWidth} {p2.Name,SecondColWidth}");
+                Console.WriteLine($"{"Total together games: ",FirstColWidth} {numberOfGames,SecondColWidth} {numberOfGames,SecondColWidth}");
+                Console.WriteLine($"{"Wins",FirstColWidth} {numberOfGamesPlayerOneWin,SecondColWidth} {numberOfGamesPlayerTwoWin,SecondColWidth}");
+                Console.WriteLine($"{"Loses",FirstColWidth} {numberOfGamesPlayerOneLose,SecondColWidth} {numberOfGamesPlayerTwoLose,SecondColWidth}");
+                Console.WriteLine($"{"Draws",FirstColWidth} {numberOfGamesDraw,SecondColWidth} {numberOfGamesDraw,SecondColWidth}");
+                Console.WriteLine($"{"% of win games",FirstColWidth} {playerOneWinRatio + "%",SecondColWidth} {playerTwoWinRatio + "%",SecondColWidth}");
+            }
+            catch (NullReferenceException)
+            {
+                Console.WriteLine("Player not found.");
+            }
+            catch (ArgumentNullException)
+            {
+                Console.WriteLine("Player not found.");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+
+            
         }
 
     }
