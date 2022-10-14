@@ -63,7 +63,7 @@ namespace TicTacToe_Console
 
         private Player AssignPlayer()
         {
-            var name = Validation.StringValidation("First Player's name: ");
+            var name = Tools.StringValidation("First Player's name: ");
             if (!_statistics.IsPlayerExists(name))
             {
                 _statistics.CreateNewPlayer(name);

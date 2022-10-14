@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TicTacToe_Console
 {
-    public static class Validation
+    public static class Tools
     {
         public static int IntValidation(string text, int min = 0, int max = 3)
         {
@@ -65,6 +65,12 @@ namespace TicTacToe_Console
                     Console.WriteLine(e.Message);
                 }
             }
+        }
+        public static void WriteWithColor(string text, ConsoleColor color)
+        {
+            Console.ForegroundColor = color;
+            Console.Write(text);
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }
