@@ -8,7 +8,6 @@ namespace TicTacToe_Console
 {
     internal class Menu
     {
-
         private readonly Statistics _statistics;
         private readonly Grid _grid;
         private readonly GameManager _gameManager;
@@ -23,7 +22,6 @@ namespace TicTacToe_Console
             _gameManager = new GameManager(_grid, _statistics);
         }
 
-
         public void NewGame()
         {
             Console.Clear();
@@ -33,8 +31,7 @@ namespace TicTacToe_Console
 
             _grid.Create();
 
-            _gameManager.Start(_player1,_player2);
-
+            _gameManager.Start(_player1, _player2);
         }
 
         public void Stats()
