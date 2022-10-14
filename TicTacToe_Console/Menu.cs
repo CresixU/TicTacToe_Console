@@ -8,7 +8,6 @@ namespace TicTacToe_Console
 {
     internal class Menu
     {
-
         private readonly Statistics _statistics;
         private readonly Grid _grid;
         private readonly GameManager _gameManager;
@@ -23,18 +22,16 @@ namespace TicTacToe_Console
             _gameManager = new GameManager(_grid, _statistics);
         }
 
-
         public void NewGame()
         {
             Console.Clear();
 
-            _player1 = AssignPlayer();
-            _player2 = AssignPlayer();
+            _player1 = AssignPlayer("First player name: ",true);
+            _player2 = AssignPlayer("Second player name: ",true);
 
             _grid.Create();
 
-            _gameManager.Start(_player1,_player2);
-
+            _gameManager.Start(_player1, _player2);
         }
 
         public void Stats()
@@ -53,8 +50,8 @@ namespace TicTacToe_Console
         {
             Console.Clear();
 
-            _player1 = AssignPlayer();
-            _player2 = AssignPlayer();
+            _player1 = AssignPlayer("First player name: ");
+            _player2 = AssignPlayer("Second player name: ");
 
             _statistics.ShowDuelStats(_player1, _player2);
         }
@@ -64,10 +61,10 @@ namespace TicTacToe_Console
             Environment.Exit(0);
         }
 
-        private Player AssignPlayer()
+        private Player AssignPlayer(string text, bool createNewPlayer = false)
         {
-            var name = Validation.StringValidation("First Player's name: ");
-            if (!_statistics.IsPlayerExists(name))
+            var name = Tools.StringValidation(text);
+            if (!_statistics.IsPlayerExists(name) && createNewPlayer)
             {
                 _statistics.CreateNewPlayer(name);
             }

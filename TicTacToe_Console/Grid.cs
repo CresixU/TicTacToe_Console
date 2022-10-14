@@ -31,18 +31,27 @@ namespace TicTacToe_Console
         public void Display()
         {
             Console.Clear();
+            Console.WriteLine("    0   1   2 ");
+            Console.WriteLine("   ___________");
             for (int i = 0; i < GRID_SIZE; i++)
             {
-                Console.Write("|");
+                Console.WriteLine("  |   |   |   |");
+                Console.Write($"{i} |");
+
                 for (int j = 0; j < GRID_SIZE; j++)
                 {
-                    if (table[i, j] == EMPTY) Console.Write(" ");
-                    else if (table[i, j] == CROSS) Console.Write("X");
-                    else if (table[i, j] == CIRCLE) Console.Write("O");
+                    if (table[i, j] == EMPTY) 
+                        Console.Write("   ");
+                    else if (table[i, j] == CROSS) 
+                        Tools.WriteWithColor(" X ", ConsoleColor.Red);
+                    else if (table[i, j] == CIRCLE) 
+                        Tools.WriteWithColor(" O ", ConsoleColor.Green);
+
+                    Console.Write("|");
                 }
-                Console.WriteLine("|");
+                Console.WriteLine("\n  |___|___|___|");
             }
-            
+
             Console.WriteLine($"Current player: {(currentPlayer == CROSS ? "O" : "X")}");
         }
 
@@ -51,8 +60,8 @@ namespace TicTacToe_Console
             currentPlayer = player;
             while (true)
             {
-                int x = Validation.IntValidation("Axis X: ");
-                int y = Validation.IntValidation("Axis Y: ");
+                int x = Tools.IntValidation("Axis X: ");
+                int y = Tools.IntValidation("Axis Y: ");
                 if (table[y, x] == 0)
                 {
                     table[y, x] = player;
