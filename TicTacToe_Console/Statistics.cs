@@ -36,7 +36,7 @@ namespace TicTacToe_Console
                 return;
             }
 
-            var topPlayers = players.OrderByDescending(p => p.WinRatio).ToList();
+            var topPlayers = players.OrderByDescending(p => p.WinRatio).Take(10).ToList();
             Console.WriteLine($"TOP 10 Players by WinRatio\n{"Name",10} {"Total",10} {"Wins",5} {"Loses",5} Win/Total(%)");
             foreach (var item in topPlayers)
             {
