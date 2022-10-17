@@ -17,13 +17,11 @@ namespace TicTacToe_Console
         {
             get
             {
-                if(TotalGames!=0) 
-                    return WinGames/TotalGames * 100;
+                if (TotalGames != 0)
+                    return WinGames / TotalGames * 100;
                 return 0;
             }
-            set { _winRatio = value; } 
         }
-        private int _winRatio;
 
         public Player(string name)
         {
@@ -31,7 +29,6 @@ namespace TicTacToe_Console
             WinGames = 0;
             LoseGames = 0;
             DrawGames = 0;
-            WinRatio = 0;
         }
 
         public void Win()
