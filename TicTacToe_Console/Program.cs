@@ -10,13 +10,16 @@ namespace TicTacToe_Console
             var menu = new Menu(statistics);
             statistics.players = FileManager<Player>.LoadData("players.json");
             statistics.duels = FileManager<Duel>.LoadData("duels.json");
-            while (true)
+            char key = default;
+            do
             {
                 Console.WriteLine("Tic Tac Toe Game\n\n1 - New Game\n2 - Statistics\n3 - Top Players\n4 - Duel Statistics\n7 - Exit Game");
-                switch (Console.ReadKey().KeyChar)
+                switch (key = Console.ReadKey().KeyChar)
                 {
                     case '1':
                         menu.NewGame();
+                        FileManager<Player>.SaveData(statistics.players, "players.json");
+                        FileManager<Duel>.SaveData(statistics.duels, "duels.json");
                         break;
                     case '2':
                         menu.Stats();
@@ -28,15 +31,11 @@ namespace TicTacToe_Console
                         menu.DuelStats();
                         break;
                     case '7':
-                        FileManager<Player>.SaveData(statistics.players, "players.json");
-                        FileManager<Duel>.SaveData(statistics.duels,"duels.json");
-                        menu.Exit();
                         break;
                     default:
                         break;
-
                 }
-            }
+            } while (key != '7');
         }
 
 
