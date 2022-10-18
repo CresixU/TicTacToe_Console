@@ -13,6 +13,7 @@ namespace TicTacToe_Console
             char key = default;
             do
             {
+                Console.Clear();
                 Console.WriteLine("Tic Tac Toe Game\n\n1 - New Game\n2 - Statistics\n3 - Top Players\n4 - Duel Statistics\n7 - Exit Game");
                 switch (key = Console.ReadKey().KeyChar)
                 {
