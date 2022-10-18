@@ -4,31 +4,29 @@ namespace TicTacToe_Console
 {
     public class GameManager
     {
-        public GameManager(Grid grid, Statistics statistics)
+        public GameManager(Statistics statistics)
         {
-            _grid = grid;
             _statistics = statistics;
         }
 
-        private readonly Grid _grid;
         private readonly Statistics _statistics;
 
         public void Start(Player player1, Player player2)
         {
             while (true)
             {
-                _grid.Display();
-                _grid.Insert(_grid.CROSS);
+                Grid.Display();
+                Grid.Insert(Grid.CROSS);
                 if (CheckGameStatus(player1, player2)) break;
-                _grid.Display();
-                _grid.Insert(_grid.CIRCLE);
+                Grid.Display();
+                Grid.Insert(Grid.CIRCLE);
                 if (CheckGameStatus(player1, player2)) break;
             }
         }
 
         public bool CheckGameStatus(Player player1, Player player2)
         {
-            if (CheckWinner(_grid.CROSS))
+            if (CheckWinner(Grid.CROSS))
             {
                 Console.WriteLine($"Player X has won");
                 player1.Win();
@@ -36,7 +34,7 @@ namespace TicTacToe_Console
                 _statistics.AddDuelResults(player1, player2, player1);
                 return true;
             }
-            if (CheckWinner(_grid.CIRCLE))
+            if (CheckWinner(Grid.CIRCLE))
             {
                 Console.WriteLine($"Player O has won");
                 player1.Lose();
@@ -59,42 +57,42 @@ namespace TicTacToe_Console
         {
             int sum = 0;
             //Horizontal checking
-            for (int i = 0; i < _grid.GRID_SIZE; i++)
+            for (int i = 0; i < Grid.GRID_SIZE; i++)
             {
-                for (int j = 0; j < _grid.GRID_SIZE; j++)
+                for (int j = 0; j < Grid.GRID_SIZE; j++)
                 {
-                    sum += _grid.table[i, j];
-                    if (sum == player * _grid.GRID_SIZE)
+                    sum += Grid.table[i, j];
+                    if (sum == player * Grid.GRID_SIZE)
                         return true;
                 }
                 sum = 0;
             }
             //Vertical checking
-            for (int j = 0; j < _grid.GRID_SIZE; j++)
+            for (int j = 0; j < Grid.GRID_SIZE; j++)
             {
-                for (int i = 0; i < _grid.GRID_SIZE; i++)
+                for (int i = 0; i < Grid.GRID_SIZE; i++)
                 {
-                    sum += _grid.table[i, j];
-                    if (sum == player * _grid.GRID_SIZE)
+                    sum += Grid.table[i, j];
+                    if (sum == player * Grid.GRID_SIZE)
                         return true;
                 }
                 sum = 0;
             }
             //Diagonally \
-            for (int j = 0; j < _grid.GRID_SIZE; j++)
+            for (int j = 0; j < Grid.GRID_SIZE; j++)
             {
-                sum += _grid.table[j, j];
-                if (sum == player * _grid.GRID_SIZE)
+                sum += Grid.table[j, j];
+                if (sum == player * Grid.GRID_SIZE)
                     return true;
             }
             sum = 0;
             //Diagonally /
             int a = 0;
-            for (int i = _grid.GRID_SIZE - 1; i >= 0; i--)
+            for (int i = Grid.GRID_SIZE - 1; i >= 0; i--)
             {
-                a = _grid.GRID_SIZE - 1 - i;
-                sum += _grid.table[i, a];
-                if (sum == player * _grid.GRID_SIZE)
+                a = Grid.GRID_SIZE - 1 - i;
+                sum += Grid.table[i, a];
+                if (sum == player * Grid.GRID_SIZE)
                     return true;
             }
 
@@ -103,11 +101,11 @@ namespace TicTacToe_Console
 
         private bool CheckDraw()
         {
-            for (int i = 0; i < _grid.GRID_SIZE; i++)
+            for (int i = 0; i < Grid.GRID_SIZE; i++)
             {
-                for (int j = 0; j < _grid.GRID_SIZE; j++)
+                for (int j = 0; j < Grid.GRID_SIZE; j++)
                 {
-                    if (_grid.table[i, j] == 0) return false;
+                    if (Grid.table[i, j] == 0) return false;
                 }
             }
             return true;
