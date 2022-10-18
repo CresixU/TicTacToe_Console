@@ -51,11 +51,6 @@ namespace TicTacToe_Console
             _statistics.ShowDuelStats(_player1, _player2);
         }
 
-        public void Exit()
-        {
-            Environment.Exit(0);
-        }
-
         private Player AssignPlayer(string text, bool createNewPlayer = false)
         {
             var name = Tools.StringValidation(text);
