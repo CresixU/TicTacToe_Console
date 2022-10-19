@@ -1,22 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TicTacToe_Console
 {
-    public class Grid
+    public static class Grid
     {
-        public readonly int GRID_SIZE = 3;
-        public readonly int CROSS = 1;
-        public readonly int CIRCLE = -1;
-        public readonly int EMPTY = 0;
+        public const int GRID_SIZE = 3;
+        public const int CROSS = 1;
+        public const int CIRCLE = -1;
+        public const int EMPTY = 0;
 
-        public int[,] table;
-        int currentPlayer = -1;
+        public static int[,] table;
+        static int currentPlayer = -1;
 
-        public void Create()
+        public static void Create()
         {
             table = new int[GRID_SIZE, GRID_SIZE];
             for (int i = 0; i < GRID_SIZE; i++)
@@ -28,7 +24,7 @@ namespace TicTacToe_Console
             }
         }
 
-        public void Display()
+        public static void Display()
         {
             Console.Clear();
             Console.WriteLine("    0   1   2 ");
@@ -55,7 +51,7 @@ namespace TicTacToe_Console
             Console.WriteLine($"Current player: {(currentPlayer == CROSS ? "O" : "X")}");
         }
 
-        public void Insert(int player)
+        public static void Insert(int player)
         {
             currentPlayer = player;
             while (true)

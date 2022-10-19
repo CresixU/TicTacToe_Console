@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TicTacToe_Console
 {
@@ -100,7 +97,6 @@ namespace TicTacToe_Console
 
             try
             {
-
                 var togetherGames =
                 duels.Where(d =>
                 ((d.PlayerOne.Name == p1.Name) && (d.PlayerTwo.Name == p2.Name)) ||

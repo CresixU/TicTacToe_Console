@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TicTacToe_Console
 {
     internal class Menu
     {
         private readonly Statistics _statistics;
-        private readonly Grid _grid;
         private readonly GameManager _gameManager;
 
         private Player _player1;
@@ -18,8 +14,7 @@ namespace TicTacToe_Console
         public Menu(Statistics stats)
         {
             _statistics = stats;
-            _grid = new Grid();
-            _gameManager = new GameManager(_grid, _statistics);
+            _gameManager = new GameManager(_statistics);
         }
 
         public void NewGame()
@@ -29,7 +24,7 @@ namespace TicTacToe_Console
             _player1 = AssignPlayer("First player name: ",true);
             _player2 = AssignPlayer("Second player name: ",true);
 
-            _grid.Create();
+            Grid.Create();
 
             _gameManager.Start(_player1, _player2);
         }
@@ -54,11 +49,6 @@ namespace TicTacToe_Console
             _player2 = AssignPlayer("Second player name: ");
 
             _statistics.ShowDuelStats(_player1, _player2);
-        }
-
-        public void Exit()
-        {
-            Environment.Exit(0);
         }
 
         private Player AssignPlayer(string text, bool createNewPlayer = false)
