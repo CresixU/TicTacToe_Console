@@ -39,7 +39,7 @@ namespace TicTacToe_Console
                 try
                 {
                     string output = Console.ReadLine();
-                    if (output == null || output == "" || output[0] == ' ') throw new Exception("String is empty");
+                    if (string.IsNullOrWhiteSpace(output)) throw new Exception("String is empty");
                     if (output.Length > maxLength) throw new Exception($"Text should not be longer than {maxLength} characters");
 
                     return output;
